@@ -1,0 +1,54 @@
+Feature,Importance
+num__TotalCharges,0.1250538954002187
+num__tenure,0.11616158252630997
+num__MonthlyCharges,0.11475013640591818
+cat__Contract_Month-to-month,0.06995188202624238
+cat__OnlineSecurity_No,0.03777555578307825
+cat__PaymentMethod_Electronic check,0.028933618327595962
+cat__TechSupport_No,0.028222740230749024
+cat__Contract_Two year,0.02797262781178449
+cat__InternetService_Fiber optic,0.02456343354265044
+cat__TenureGroup_0-12 Months,0.023711011899329806
+cat__OnlineBackup_No,0.016465753744020466
+cat__gender_Female,0.015937556134122115
+cat__gender_Male,0.01563625401195666
+cat__TenureGroup_49+ Months,0.014484907518106502
+cat__PaperlessBilling_No,0.014378292129209084
+cat__PaperlessBilling_Yes,0.013842203508113188
+cat__Partner_No,0.013155476430391338
+cat__Partner_Yes,0.013003990959266833
+cat__Contract_One year,0.012579727125894474
+cat__PaymentMethod_Bank transfer (automatic),0.01243267496054548
+cat__DeviceProtection_No,0.012058008743217047
+cat__PaymentMethod_Credit card (automatic),0.011867852984788315
+cat__OnlineBackup_Yes,0.011635170615408568
+cat__Dependents_Yes,0.01150950079216932
+cat__Dependents_No,0.011244590803317045
+cat__MultipleLines_No,0.011112842800493971
+cat__SeniorCitizen_Yes,0.01108619992611573
+cat__SeniorCitizen_No,0.011047647273415652
+cat__MultipleLines_Yes,0.010989139916600704
+cat__TechSupport_Yes,0.010939765849932857
+cat__PaymentMethod_Mailed check,0.010615122588669456
+cat__OnlineSecurity_Yes,0.010448399906157257
+cat__StreamingMovies_No,0.01041030495586469
+cat__InternetService_DSL,0.010333906769192866
+cat__DeviceProtection_Yes,0.010309940165632683
+cat__StreamingTV_No,0.010061086153056975
+cat__StreamingMovies_Yes,0.009928844769329204
+cat__StreamingTV_Yes,0.009869790571825245
+cat__TenureGroup_25-48 Months,0.007999960168329209
+cat__MonthlyRevenueCategory_High,0.006999614377215615
+cat__TenureGroup_13-24 Months,0.006657539927519155
+cat__OnlineBackup_No internet service,0.005214987780916778
+cat__StreamingMovies_No internet service,0.005002844501786773
+cat__MonthlyRevenueCategory_Medium,0.00490574423841768
+cat__StreamingTV_No internet service,0.004722238949135561
+cat__InternetService_No,0.004385614160495517
+cat__TechSupport_No internet service,0.004205364215404184
+cat__MonthlyRevenueCategory_Low,0.0030534329450387712
+cat__DeviceProtection_No internet service,0.002745692348284916
+cat__PhoneService_Yes,0.002496278288083629
+cat__OnlineSecurity_No internet service,0.0024166178843525277
+cat__MultipleLines_No phone service,0.002413703853255855
+cat__PhoneService_No,0.0022989303010729693
