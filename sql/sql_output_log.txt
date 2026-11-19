@@ -1,0 +1,204 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+
+psql (18.7)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# CREATE DATABASE churn_db;
+CREATE DATABASE
+postgres=# \c churn_db
+You are now connected to database "churn_db" as user "postgres".
+churn_db=# CREATE TABLE telco (
+churn_db(#     customerID TEXT,
+churn_db(#     gender TEXT,
+churn_db(#     SeniorCitizen TEXT,
+churn_db(#     Partner TEXT,
+churn_db(#     Dependents TEXT,
+churn_db(#     tenure INT,
+churn_db(#     PhoneService TEXT,
+churn_db(#     MultipleLines TEXT,
+churn_db(#     InternetService TEXT,
+churn_db(#     OnlineSecurity TEXT,
+churn_db(#     OnlineBackup TEXT,
+churn_db(#     DeviceProtection TEXT,
+churn_db(#     TechSupport TEXT,
+churn_db(#     StreamingTV TEXT,
+churn_db(#     StreamingMovies TEXT,
+churn_db(#     Contract TEXT,
+churn_db(#     PaperlessBilling TEXT,
+churn_db(#     PaymentMethod TEXT,
+churn_db(#     MonthlyCharges NUMERIC,
+churn_db(#     TotalCharges NUMERIC,
+churn_db(#     Churn TEXT,
+churn_db(#     ChurnFlag INT,
+churn_db(#     TenureGroup TEXT,
+churn_db(#     MonthlyRevenueCategory TEXT,
+churn_db(#     RiskGroup TEXT
+churn_db(# );
+CREATE TABLE
+churn_db=# \copy telco FROM 'C:/Users/user5/Downloads/churn_project/data/telco_cleaned.csv' CSV HEADER
+COPY 7043
+churn_db=# SELECT COUNT(*) FROM telco;
+ count
+-------
+  7043
+(1 row)
+
+
+churn_db=# SELECT
+churn_db-#     COUNT(*)                                              AS total_customers,
+churn_db-#     SUM(ChurnFlag)                                        AS churned_customers,
+churn_db-#     ROUND(100.0 * SUM(ChurnFlag) / COUNT(*), 2)           AS churn_rate_pct
+churn_db-# FROM telco;
+ total_customers | churned_customers | churn_rate_pct
+-----------------+-------------------+----------------
+            7043 |              1869 |          26.54
+(1 row)
+
+
+churn_db=# \i 'C:/Users/user5/Downloads/churn_project/churn_queries.sql'
+ total_customers | churned_customers | churn_rate_pct
+-----------------+-------------------+----------------
+            7043 |              1869 |          26.54
+(1 row)
+
+
+    contract    | tenuregroup  |       paymentmethod       | customers | churn_rate_pct
+----------------+--------------+---------------------------+-----------+----------------
+ Month-to-month | 0-12 Months  | Electronic check          |       954 |          63.10
+ Month-to-month | 13-24 Months | Electronic check          |       355 |          51.27
+ Month-to-month | 0-12 Months  | Bank transfer (automatic) |       208 |          48.56
+ Month-to-month | 0-12 Months  | Credit card (automatic)   |       191 |          41.36
+ Month-to-month | 25-48 Months | Electronic check          |       376 |          40.96
+(5 rows)
+
+
+ status  | customers | avg_monthly_charges
+---------+-----------+---------------------
+ Active  |      5174 |               61.27
+ Churned |      1869 |               74.44
+(2 rows)
+
+
+ customerid |    contract    | tenure | monthlycharges | churn
+------------+----------------+--------+----------------+-------
+ 1583-IHQZE | Month-to-month |     12 |         112.95 | Yes
+ 3292-PBZEJ | Month-to-month |     11 |          111.4 | No
+ 9851-KIELU | Month-to-month |     10 |          110.1 | Yes
+ 3992-YWPKO | Month-to-month |      6 |          109.9 | Yes
+ 5760-IFJOZ | Month-to-month |      3 |         107.95 | No
+ 2081-VEYEH | Month-to-month |      3 |         107.95 | No
+ 2027-FECZV | Month-to-month |     12 |          106.7 | Yes
+ 1400-MMYXY | Month-to-month |      3 |          105.9 | Yes
+ 3932-CMDTD | One year       |      4 |         105.65 | Yes
+ 3389-YGYAI | Month-to-month |      8 |          105.5 | Yes
+ 5052-PNLOS | Month-to-month |      3 |         105.35 | Yes
+ 7145-FEJWU | Month-to-month |     12 |          105.3 | No
+ 4587-VVTOX | Month-to-month |      6 |          105.3 | Yes
+ 6734-GMPVK | Month-to-month |      5 |          105.3 | No
+ 6496-SLWHQ | Month-to-month |      3 |          105.0 | Yes
+ 5923-GXUOC | Month-to-month |     10 |          104.4 | Yes
+ 1875-QIVME | Month-to-month |      2 |          104.4 | Yes
+ 2369-UAPKZ | Month-to-month |      5 |          104.1 | Yes
+ 5293-WXJAK | Month-to-month |     11 |         104.05 | Yes
+ 7089-IVVAZ | Month-to-month |      8 |         103.35 | Yes
+ 2018-PZKMU | Month-to-month |      9 |          103.1 | No
+ 9547-ITEFG | Month-to-month |      9 |          102.6 | No
+ 7181-BQYBV | Month-to-month |      1 |         102.45 | Yes
+ 1465-VINDH | Month-to-month |     10 |          102.1 | Yes
+ 6688-UZPWD | Month-to-month |     11 |          102.0 | Yes
+ 8884-ADFVN | Month-to-month |      7 |         101.95 | Yes
+ 0702-PGIBZ | Month-to-month |      4 |          101.7 | Yes
+ 5299-SJCZT | Month-to-month |      3 |         101.55 | Yes
+ 8118-TJAFG | Month-to-month |      9 |          101.5 | No
+ 5419-JPRRN | Month-to-month |      1 |         101.45 | Yes
+    contract    | customers | churned | churn_rate_pct
+----------------+-----------+---------+----------------
+ Month-to-month |      3875 |    1655 |          42.71
+ One year       |      1473 |     166 |          11.27
+ Two year       |      1695 |      48 |           2.83
+(3 rows)
+
+
+       paymentmethod       | customers | churned | churn_rate_pct
+---------------------------+-----------+---------+----------------
+ Electronic check          |      2365 |    1071 |          45.29
+ Mailed check              |      1612 |     308 |          19.11
+ Bank transfer (automatic) |      1544 |     258 |          16.71
+ Credit card (automatic)   |      1522 |     232 |          15.24
+(4 rows)
+
+
+ total_monthly_revenue | churned_monthly_revenue | pct_revenue_lost_to_churn
+-----------------------+-------------------------+---------------------------
+             456116.60 |               139130.85 |                     30.50
+(1 row)
+
+
+ churn_rank |    contract    | internetservice | customers | churn_rate_pct
+------------+----------------+-----------------+-----------+----------------
+          1 | Month-to-month | Fiber optic     |      2128 |          54.61
+          2 | Month-to-month | DSL             |      1223 |          32.22
+          3 | One year       | Fiber optic     |       539 |          19.29
+          4 | Month-to-month | No              |       524 |          18.89
+          5 | One year       | DSL             |       570 |           9.30
+          6 | Two year       | Fiber optic     |       429 |           7.23
+          7 | One year       | No              |       364 |           2.47
+          8 | Two year       | DSL             |       628 |           1.91
+          9 | Two year       | No              |       638 |           0.78
+(9 rows)
+
+
+ tenuregroup  | customers | retention_rate_pct | churn_rate_pct
+--------------+-----------+--------------------+----------------
+ 0-12 Months  |      2186 |              52.56 |          47.44
+ 13-24 Months |      1024 |              71.29 |          28.71
+ 25-48 Months |      1594 |              79.61 |          20.39
+ 49+ Months   |      2239 |              90.49 |           9.51
+(4 rows)
+
+
+ customerid |    contract    | tenure | monthlycharges
+------------+----------------+--------+----------------
+ 8199-ZLLSA | One year       |     67 |         118.35
+ 2889-FPWRM | One year       |     72 |          117.8
+ 2302-ANTDP | Month-to-month |     48 |         117.45
+ 9053-JZFKV | Two year       |     67 |          116.2
+ 1444-VVSGW | One year       |     70 |         115.65
+ 0201-OAMXR | One year       |     70 |         115.55
+ 4361-BKAXE | Month-to-month |     41 |          114.5
+ 1555-DJEQW | Two year       |     70 |          114.2
+ 9158-VCTQB | Month-to-month |     41 |          113.6
+ 7279-BUYWN | Month-to-month |     41 |          113.2
+ 5271-YNWVR | Two year       |     68 |         113.15
+ 1583-IHQZE | Month-to-month |     12 |         112.95
+ 5236-PERKL | Two year       |     57 |         112.95
+ 2403-BCASL | One year       |     41 |         111.95
+ 6664-FPDAC | One year       |     56 |         111.95
+ 3090-HAWSU | Two year       |     61 |          111.6
+ 2659-VXMWZ | One year       |     67 |          111.3
+ 9249-FXSCK | One year       |     52 |         111.25
+ 0115-TFERT | Month-to-month |     21 |          111.2
+ 9079-YEXQJ | Month-to-month |     54 |          111.1
+ 7632-MNYOY | One year       |     66 |          110.9
+ 4789-KWMXN | One year       |     47 |         110.85
+ 9835-ZIITK | One year       |     66 |         110.85
+ 5099-BAILX | Month-to-month |     43 |         110.75
+ 3336-JORSO | Month-to-month |     33 |         110.45
+ 3870-MQAMG | One year       |     54 |         110.35
+ 2408-TZMJL | One year       |     59 |         110.15
+ monthlyrevenuecategory | customers | churned | running_churned
+------------------------+-----------+---------+-----------------
+ High                   |      3583 |    1267 |            1267
+ Low                    |      1735 |     189 |            1456
+ Medium                 |      1725 |     413 |            1869
+(3 rows)
+
+
+churn_db=#
